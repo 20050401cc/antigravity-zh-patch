@@ -4,7 +4,12 @@ import sys
 import time
 import urllib.request
 
-import websocket
+try:
+    import websocket
+except ImportError:
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "websocket-client"])
+    import websocket
 
 
 USER_DATA = pathlib.Path.home() / "AppData" / "Roaming" / "Antigravity"
